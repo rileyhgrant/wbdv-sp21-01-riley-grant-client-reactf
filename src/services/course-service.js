@@ -7,6 +7,8 @@ const findAllCourses = () =>
         .then( response => response.json() );
 // break vs-code auto indentation
 
+
+
 const createCourse = ( course ) => 
     fetch( COURSES_URL, {
         method: 'POST',
@@ -18,6 +20,8 @@ const createCourse = ( course ) =>
     .then( response => response.json() );
 // break vs-code auto indentation
 
+
+
 const deleteCourse = ( courseID ) => 
     fetch( `${COURSES_URL}/${courseID}`, {
         method: 'DELETE'
@@ -26,7 +30,8 @@ const deleteCourse = ( courseID ) =>
 // break vs-code auto indentation
 
 
-const updateCourse = ( courseID, course ) =>
+
+const updateCourse = ( course, courseID ) =>
     fetch( `${COURSES_URL}/${courseID}`, {
         method: 'PUT',
         body: JSON.stringify( course ),

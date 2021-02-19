@@ -1,9 +1,78 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 
+import CourseTopBar from './course-top-bar'
+import CourseTable from './course-table'
+import CourseGrid from './course-grid'
+
+import courseService from '../services/course-service'
+
+/* A class for the CourseManager component of this assignment */
 export default class CourseManager extends React.Component {
+
+    /* initialize blank state before make an API call to get data */
+    state = {
+        courses: [
+        ]
+    }
+
+    /* a built in function that is a convenient time to update state */
+    componentDidMount() {
+        courseService.findAllCourses()
+            .then( courses => this.setState( {courses} ));
+    }
+
+    // TODO: have this pull from field on top in order to add course
+    /* A method that updates the state to update add given course */
+    createCourse = ( newCourse ) => {
+
+        courseService.createCourse( newCourse )
+            .then( actualCourse => {
+                this.state.courses.push( actualCourse );
+                this.setState( this.state );
+            });
+    }
+
+    /* A method that updates the state to remove the given course */
+    deleteCourse = ( course ) => {
+        courseService.deleteCourse( course._id )
+            .then( status => {
+            this.setState( (prevState) => ({
+                courses: prevState.courses.filter( c => c._id !== course._id )
+            }))
+        });
+    }
+
+    /* A method that updates the state to update the given course */
+    updateCourse = ( course ) => {
+        courseService.updateCourse( course, course._id )
+            .then( status => this.setState( ( prevState ) => ({
+                ...prevState,
+                courses: prevState.courses.map( 
+                    (c) => c._id === course._id ? course : c )
+            })))
+    }
+
+    /* the render function to create the */
     render() {
-        return(
-            <h1>Course Manager!</h1>
+        return (
+            <div className="container-fluid">
+                {/* <h1>Course Manager!</h1> */}
+                <CourseTopBar createCourse={this.createCourse}/>
+                {/* <button className="btn btn-primary" onClick={this.createCourse}>Add Course</button> */}
+                {/* <input className="form-control"></input> */}
+                {/* <Route path="/manager/table" component={CourseTable}/> */}
+                <Route path="/manager/table">
+                    <CourseTable courses={this.state.courses}
+                        deleteCourse={this.deleteCourse}
+                        updateCourse={this.updateCourse}/>
+                </Route>
+                <Route path="/manager/grid">
+                    <CourseGrid courses={this.state.courses}
+                        deleteCourse={this.deleteCourse}
+                        updateCourse={this.updateCourse}/>
+                </Route>
+            </div>
         )
     }
 }

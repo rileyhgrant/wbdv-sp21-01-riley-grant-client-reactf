@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+
+/* a function to render a single course row */
 const CourseRow = ({ course, updateCourse, deleteCourse }) => {
 
-    /* react 'hooks', gives the option for functions to maintain some small state */
+    /* react hooks to be used in this component */
     const [ editing, setEditing ] = useState( false );
     const [ newTitle, setNewTitle ] = useState( course.title );
 
-
-    
-
+    /* a function to edit this selected course */
     const editCourse = () => {
         setEditing( true );
         setNewTitle( course.title );
     }
 
+    /* a function to save this course that is being edited, using values stored in hooks */
     const saveCourse = () => {
         setEditing( false );
         const newCourse = {
@@ -24,21 +25,23 @@ const CourseRow = ({ course, updateCourse, deleteCourse }) => {
         updateCourse( newCourse );
     }
 
+    /* a function to remove the course that is being edited */
     const removeCourse = () => {
         setEditing( false );
         deleteCourse( course );
     }
 
+    /* an object used to namespace the editing functions specific to this component */
     const rowFunctions = {
         editCourse: editCourse,
         updateCourse: saveCourse,
         deleteCourse: removeCourse
     }
 
-
+    /* the return statement to tell react what to render */
     return (<tr>
         <td>
-            { !editing && <Link to="/editor">{course.title}</Link> }
+            { !editing && <Link to="/editor"><i className="fas fa-file m-1"></i>{course.title}</Link> }
             { editing &&
                 <input
                     className="form-control"
@@ -46,12 +49,12 @@ const CourseRow = ({ course, updateCourse, deleteCourse }) => {
                     value={newTitle} />
             }
         </td>
-        <td>{course.owner}</td>
-        <td>{course.lastModified}</td>
+        <td className="d-none d-md-table-cell">{course.owner}</td>
+        <td className="d-none d-lg-table-cell">{course.lastModified}</td>
         <td>
-            {!editing && <i onClick={ () => rowFunctions.editCourse() } className="m-1 fas fa-edit"></i>}
-            {editing  && <i onClick={ () => rowFunctions.updateCourse() }className="fas fa-check" ></i>}
-            {editing  && <i onClick={ () => rowFunctions.removeCourse() } className="m-1 fas fa-trash"></i>}
+            { !editing && <i onClick={ () => rowFunctions.editCourse() }   className="m-1 fas fa-edit"></i>}
+            { editing  && <i onClick={ () => rowFunctions.updateCourse() } className="m-1 fas fa-check" ></i>}
+            { editing  && <i onClick={ () => rowFunctions.deleteCourse() } className="m-1 fas fa-trash"></i>}
         </td>
     </tr>
     )

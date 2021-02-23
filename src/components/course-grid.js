@@ -17,8 +17,8 @@ const CourseGrid = ({ courses, updateCourse, deleteCourse }) =>
 
             <tbody>
                 <tr className="">
-                    <td className=""><h5>Recent Documents</h5></td>
-                    <td className=""><h5>Owned By</h5></td>
+                    <td className="d-none d-md-table-cell"><h5>Recent Documents</h5></td>
+                    <td className="d-none d-md-table-cell"><h5>Owned By</h5></td>
                     <td className=""></td>
                     <td className="">
                         <i className="m-1 fas fa-folder"></i>
@@ -29,8 +29,6 @@ const CourseGrid = ({ courses, updateCourse, deleteCourse }) =>
             </tbody>
         </table>
 
-        {/* <h2>Course Grid {courses.length}</h2> */}
-        {/* <Link to="/manager/table"><i className="fas fa-list float-right"></i></Link> */}
         <div className="d-flex flex-wrap">
             {
                 courses.map(course =>

@@ -7,7 +7,9 @@ const findAllCourses = () =>
         .then( response => response.json() );
 // break vs-code auto indentation
 
-
+const findCourseById = ( courseID ) =>
+    fetch( `${COURSES_URL}/${courseID}` )
+        .then( response => response.json() );
 
 const createCourse = ( course ) => 
     fetch( COURSES_URL, {
@@ -45,9 +47,10 @@ const updateCourse = ( course, courseID ) =>
 
 const api = {
     findAllCourses: findAllCourses,
-    deleteCourse: deleteCourse,
-    createCourse: createCourse,
-    updateCourse: updateCourse
+    deleteCourse:   deleteCourse,
+    createCourse:   createCourse,
+    updateCourse:   updateCourse,
+    findCourseById: findCourseById
 }
 
 /* export the default object that includes all of the functions*/

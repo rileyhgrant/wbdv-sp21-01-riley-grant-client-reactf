@@ -1,0 +1,12 @@
+.widget-placeholder {
+    color: black;
+    background-color: #e3e3e3;
+    padding-top: 40px;
+    margin-top: 20px;
+    height: 80%;
+    text-align: center;
+}
+
+.course-editor-fa-color {
+    color: #007bff
+}

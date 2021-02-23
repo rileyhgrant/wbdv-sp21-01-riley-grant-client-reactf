@@ -1,0 +1,20 @@
+.add-btn {
+    color: white;
+    background-color: #007bff;
+    width: 47px;
+    height: 47px;
+    padding: 9px;
+    border-radius: 50%;
+}
+
+.add-btn a {
+    color: white;
+}
+
+.sticky-add-btn {
+    position: fixed;
+    z-index: 1;
+    right: 30px;
+    bottom: 30px;
+}
+

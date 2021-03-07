@@ -2,8 +2,8 @@ import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 import CourseTopBar from './course-top-bar/course-top-bar'
-import CourseTable from './course-table'
-import CourseGrid from './course-grid'
+import CourseTable from './course-table/course-table'
+import CourseGrid from './course-grid/course-grid'
 
 import courseService from '../services/course-service'
 
@@ -22,7 +22,6 @@ export default class CourseManager extends React.Component {
             .then(courses => this.setState({ courses }));
     }
 
-    // TODO: have this pull from field on top in order to add course
     /* A method that updates the state to update add given course */
     createCourse = (newCourse) => {
 

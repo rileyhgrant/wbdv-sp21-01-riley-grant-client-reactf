@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import placeholder from '../assets/card-placeholder.jpg'
+import placeholder from '../../assets/card-placeholder.jpg'
 
 
 /* a function to render a single course card */

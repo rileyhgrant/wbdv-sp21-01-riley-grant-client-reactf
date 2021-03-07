@@ -1,25 +1,40 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import './course-editor.style.client.css'
 
-import moduleReducer from '../../reducers/module-reducer'
+import moduleReducer from '../../reducers/module-reducer';
+import lessonReducer from '../../reducers/lesson-reducer';
+// import topicReducer from '../../reducers/topic-reducer';
+
 
 import ModuleList from './module-list'
 import LessonTabs from './lesson-tabs'
 import TopicPills from './topic-pills'
 
 
-/* create the store */
-const store = createStore(moduleReducer)
+/* create the reducer store */
+const reducer = combineReducers({
+    moduleReducer: moduleReducer,
+    lessonReducer: lessonReducer,
+    // topicReducer: topicReducer,
+})
+const store = createStore(reducer)
 
 const CourseEditor = ({ history }) =>
-    <Provider store={ store }>
+    <Provider store={store}>
         <div>
-            <ModuleList />
-            <LessonTabs />
-            <TopicPills />
+            <h1>Course Editor</h1>
+            <div className="row">
+                <div className="col-3">
+                    <ModuleList />
+                </div>
+                <div className="col-9">
+                    <LessonTabs />
+                    <TopicPills />
+                </div>
+            </div>
         </div>
     </Provider>
 

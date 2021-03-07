@@ -5,6 +5,9 @@ import CourseTopBar from './course-top-bar/course-top-bar'
 import CourseTable from './course-table/course-table'
 import CourseGrid from './course-grid/course-grid'
 
+import CourseEditor from './course-editor/course-editor'
+
+
 import courseService from '../services/course-service'
 
 /* A class for the CourseManager component of this assignment */
@@ -57,17 +60,27 @@ export default class CourseManager extends React.Component {
         return (
             <div className="container-fluid">
                 {/* <h1>Course Manager!</h1> */}
-                <CourseTopBar createCourse={this.createCourse} />
-                <Route path="/manager/table">
-                    <CourseTable courses={this.state.courses}
+                {/* <CourseTopBar createCourse={this.createCourse} /> */}
+                <Route path="/courses/table">
+                    <CourseTopBar createCourse={this.createCourse} />
+                    <CourseTable 
+                        courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
                         updateCourse={this.updateCourse} />
                 </Route>
-                <Route path="/manager/grid">
-                    <CourseGrid courses={this.state.courses}
+                <Route path="/courses/grid">
+                    <CourseTopBar createCourse={this.createCourse} />
+                    <CourseGrid 
+                        courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
                         updateCourse={this.updateCourse} />
                 </Route>
+
+                <Route path={["/courses/edit/:courseId/modules/:moduleId",
+                              "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId"]}
+                    render={ (props) => <CourseEditor{...props}/> }>
+                </Route>
+
             </div>
         )
     }

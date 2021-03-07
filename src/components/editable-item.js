@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const EditableItem = ({ item, updateItem, deleteItem }) => {
+const EditableItem = (
+  {
+    item = { title: "Some Title", _id: "ABC" },
+    updateItem,
+    deleteItem,
+    to = "/somewhere/to/go"
+  }) => {
 
   const [editing, setEditing] = useState(false);
   const [itemCache, setItemCache] = useState(item)
@@ -10,11 +16,11 @@ const EditableItem = ({ item, updateItem, deleteItem }) => {
   return (
     <>
       { !editing && <>
-        <Link to="/">{item.title}</Link>
+        <Link to={to}>{item.title}</Link>
         <i className="fas fa-edit" onClick={() => {
           setItemCache(item)
           setEditing(true)
-          }}></i>
+        }}></i>
       </>}
       { editing && <>
         <input

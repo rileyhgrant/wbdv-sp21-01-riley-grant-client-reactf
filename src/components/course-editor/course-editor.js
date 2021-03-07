@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import './course-editor.style.client.css'
@@ -22,10 +22,16 @@ const reducer = combineReducers({
 })
 const store = createStore(reducer)
 
-const CourseEditor = ({ history }) =>
-    <Provider store={store}>
+const CourseEditor = ({ history }) => {
+
+    let { courseId, moduleId } = useParams();
+
+    return (<Provider store={store}>
         <div>
-            <h1>Course Editor</h1>
+            <h1>Course Editor crs:{courseId} mod:{moduleId}
+            <i onClick={() => history.goBack()}
+                    className="fas fa-times float-right"></i>
+            </h1>
             <div className="row">
                 <div className="col-3">
                     <ModuleList />
@@ -37,6 +43,8 @@ const CourseEditor = ({ history }) =>
             </div>
         </div>
     </Provider>
+    )
+}
 
 // <div className="container" style={{ "margin-top": "20px" }}>
 //     <div className="row header-text ce-header" style={{ "padding-top": "20px" }}>

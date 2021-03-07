@@ -41,7 +41,7 @@ const CourseRow = ({ course, updateCourse, deleteCourse }) => {
     /* the return statement to tell react what to render */
     return (<tr>
         <td>
-            { !editing && <Link to="/editor"><i className="fas fa-file m-1"></i>{course.title}</Link> }
+            { !editing && <Link to={`/courses/edit/${course._id}`}><i className="fas fa-file m-1"></i>{course.title}</Link> }
             { editing &&
                 <input
                     className="form-control"

@@ -1,23 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import EditableItem from '../editable-item'
 
-const LessonTabs = ({ lessons = [] }) =>
-  <div>
-    <h2>LessonTabs</h2>
+const LessonTabs = ({ lessons = [] }) => {
+
+  const {courseId, moduleId} = useParams();
+
+  return (<div>
+    <h2>LessonTabs {courseId}, {moduleId}</h2>
     <ul className="nav nav-tabs">
       {
         lessons.map(lesson =>
           <li className="nav-item">
-            <EditableItem 
-            item={lesson}
-            updateItem={(newItem) => {alert(newItem)}} />
+            <EditableItem
+              to={`/courses/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
+              item={lesson}
+              updateItem={(newItem) => { alert(newItem) }} />
           </li>
         )
       }
     </ul>
   </div>
+  )
+}
 // break vs-code auto indent
 
 

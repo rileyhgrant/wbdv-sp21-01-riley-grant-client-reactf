@@ -15,7 +15,7 @@ const LessonTabs = (
     deleteLesson,
   }) => {
 
-  const { courseId, moduleId } = useParams();
+  const { courseId, moduleId, lessonId } = useParams();
 
   useEffect(() => {
     console.log( "Load lessons for module: " + moduleId);
@@ -30,12 +30,13 @@ const LessonTabs = (
       <ul className="nav nav-tabs">
         {
           lessons.map(lesson =>
-            <li className="nav-item">
+            <li className={`nav-item ${lesson._id === lessonId ? 'nav-link active' : ''}`}>
               <EditableItem
                 to={`/courses/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                 item={lesson}
                 updateItem={updateLesson}
-                deleteItem={deleteLesson}/>
+                deleteItem={deleteLesson}
+                />
             </li>
           )
         }

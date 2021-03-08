@@ -7,7 +7,8 @@ const EditableItem = (
     item = { title: "Default-Title", _id: "ABC" },
     updateItem,
     deleteItem,
-    to = "/default-to/"
+    to = "/default-to/",
+    active,
   }) => {
 
   const [editing, setEditing] = useState(false);
@@ -40,7 +41,11 @@ const EditableItem = (
   return (
     <>
       { !editing && <>
-        <Link to={to}>{item.title}</Link>
+        <Link 
+          // className={`nav-link ${active ? 'active' : ''}`} 
+          to={to}>
+          {item.title} {JSON.stringify(active)}
+        </Link>
         <i onClick={() => itemFunctions.editCourse()} className="m-1 fas fa-edit" ></i>
       </>}
       { editing && <>

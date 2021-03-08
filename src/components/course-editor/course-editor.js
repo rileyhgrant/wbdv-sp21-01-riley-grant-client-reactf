@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import './course-editor.style.client.css'
 
+import courseService from '../../services/course-service';
+
 import moduleReducer from '../../reducers/module-reducer';
 import lessonReducer from '../../reducers/lesson-reducer';
 import topicReducer from '../../reducers/topic-reducer';
-
 
 import ModuleList from './module-list'
 import LessonTabs from './lesson-tabs'
@@ -24,14 +25,22 @@ const store = createStore(reducer)
 
 const CourseEditor = ({ history }) => {
 
-    let { layout } = useParams();
+    let { layout, courseId } = useParams();
+    const [pageTitle, setPageTitle] = useState('test');
+    useEffect( () => {
+        courseService.findCourseById(courseId)
+        .then(actualCourse => setPageTitle(actualCourse.title))
+    }, [])
+
+    // let theCourse = courseService.findCourseById( courseId ).then();
 
     return (<Provider store={store}>
         <div>
             <h1>
+                {/* console.log({ theCourse }); */}
                 {/* <i onClick={() => history.goBack()} className="fas fa-times"></i> */}
                 <Link to={`/courses/${layout}`}><i className="fas fa-times"></i></Link>
-                !!Course Editor
+                !!Course Editor, {pageTitle}
 
             </h1>
             <div className="row">

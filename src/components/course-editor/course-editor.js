@@ -28,9 +28,9 @@ const CourseEditor = ({ history }) => {
 
     return (<Provider store={store}>
         <div>
-            <h1>Course Editor crs:{courseId} mod:{moduleId}
-            <i onClick={() => history.goBack()}
-                    className="fas fa-times float-right"></i>
+            <h1>
+                !!Course Editor
+                <i onClick={() => history.goBack()} className="fas fa-times float-right"></i>
             </h1>
             <div className="row">
                 <div className="col-3">

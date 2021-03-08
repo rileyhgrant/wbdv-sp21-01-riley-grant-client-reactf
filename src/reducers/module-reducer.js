@@ -1,46 +1,32 @@
 const initialState = {
   modules: [
-    {title: 'CS5610', _id: '123'},
-    {title: 'CS3200', _id: '234'},
-    {title: 'CS5200', _id: '345'},
+    // { title: 'CS5610', _id: '123' },
+    // { title: 'CS3200', _id: '234' },
+    // { title: 'CS5200', _id: '345' },
   ]
 }
 
 const moduleReducer = (state = initialState, action) => {
-  switch( action.type ) {
+  switch (action.type) {
+
+    case "FIND_MODULES_FOR_COURSE":
+      return {
+        // ...state,
+        modules: action.modules,
+      }
 
     case "CREATE_MODULE":
-      //alert( "create module - reducer" );
-      
-      const newModule = {
-        title: "New Module",
-        _id: (new Date()).getTime 
-      }
-      return {
-        ...state,
+      const newStateCreate = {
+        // ...state,
         modules: [
           ...state.modules,
-          newModule,
+          action.module
         ]
       }
-    case "FIND_MODULES_FOR_COURSE":
-      break;
-    case "FIND_MODULE":
-      break;
-    case "UPDATE_MODULE":
-      return {
-        ...state,
-        modules: state.modules.map( module => {
-          if (module._id === action.updatedModule._id) {
-            return action.updatedModule;
-          } else {
-            return module;
-          }
-        })
-      }
+      return newStateCreate;
+
     case "DELETE_MODULE":
-      return {
-        ...state,
+      const newStateDelete = {
         modules: state.modules.filter( module => {
           if (module._id !== action.moduleToDelete._id) {
             return true;
@@ -49,6 +35,24 @@ const moduleReducer = (state = initialState, action) => {
           }
         })
       }
+      return newStateDelete;
+
+
+    case "FIND_MODULE":
+      break;
+
+    case "UPDATE_MODULE":
+      return {
+        // ...state,
+        modules: state.modules.map(module => {
+          if (module._id === action.updatedModule._id) {
+            return action.updatedModule;
+          } else {
+            return module;
+          }
+        })
+      }
+
     default:
       return state;
 

@@ -9,7 +9,7 @@ const LessonTabs = ({ lessons = [] }) => {
   const {courseId, moduleId} = useParams();
 
   return (<div>
-    <h2>LessonTabs {courseId}, {moduleId}</h2>
+    <h2>!!LessonTabs</h2>
     <ul className="nav nav-tabs">
       {
         lessons.map(lesson =>

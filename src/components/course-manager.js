@@ -15,8 +15,7 @@ export default class CourseManager extends React.Component {
 
     /* initialize blank state before make an API call to get data */
     state = {
-        courses: [
-        ]
+        courses: []
     }
 
     /* fetch courses after component mounts */
@@ -63,22 +62,26 @@ export default class CourseManager extends React.Component {
                 {/* <CourseTopBar createCourse={this.createCourse} /> */}
                 <Route path="/courses/table">
                     <CourseTopBar createCourse={this.createCourse} />
-                    <CourseTable 
+                    <CourseTable
                         courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
                         updateCourse={this.updateCourse} />
                 </Route>
                 <Route path="/courses/grid">
                     <CourseTopBar createCourse={this.createCourse} />
-                    <CourseGrid 
+                    <CourseGrid
                         courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
                         updateCourse={this.updateCourse} />
                 </Route>
 
-                <Route path={["/courses/edit/:courseId/modules/:moduleId",
-                              "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId"]}
-                    render={ (props) => <CourseEditor{...props}/> }>
+                <Route path={[
+                    "/courses/edit/:courseId",
+                    "/courses/edit/:courseId/modules/:moduleId",
+                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                    // TODO: maybe not needed, remove possibly?
+                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId/topic/:topicId",]}
+                    render={(props) => <CourseEditor{...props} />}>
                 </Route>
 
             </div>

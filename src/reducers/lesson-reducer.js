@@ -15,7 +15,7 @@ const lessonReducer = (state = initialState, action) => {
       }
 
     case "FIND_LESSON":
-        break;
+        return state;
 
     case "CREATE_LESSON":
       const newStateCreated = {

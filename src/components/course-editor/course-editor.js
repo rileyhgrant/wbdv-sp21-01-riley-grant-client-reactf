@@ -6,7 +6,7 @@ import './course-editor.style.client.css'
 
 import moduleReducer from '../../reducers/module-reducer';
 import lessonReducer from '../../reducers/lesson-reducer';
-// import topicReducer from '../../reducers/topic-reducer';
+import topicReducer from '../../reducers/topic-reducer';
 
 
 import ModuleList from './module-list'
@@ -18,7 +18,7 @@ import TopicPills from './topic-pills'
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
     lessonReducer: lessonReducer,
-    // topicReducer: topicReducer,
+    topicReducer: topicReducer,
 })
 const store = createStore(reducer)
 

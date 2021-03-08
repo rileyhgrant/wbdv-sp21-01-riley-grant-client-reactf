@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import lessonService from '../../services/lesson-service'
-import EditableItem from '../editable-item'
+import lessonService from '../../services/lesson-service';
+import EditableItem from '../editable-item';
 
 /* A functional react component for lesson tabs */
 const LessonTabs = (
@@ -47,11 +47,10 @@ const LessonTabs = (
     </div>
   )
 }
-// break vs-code auto indent
 
 
 const stpm = (state) => ({
-  lessons: state.lessonReducer.lessons
+  lessons: state.lessonReducer.lessons,
 })
 
 const dtpm = (dispatch) => ({
@@ -85,7 +84,6 @@ const dtpm = (dispatch) => ({
       type: "DELETE_LESSON",
       lessonToDelete: lessonToDelete,
     })),
-
 })
 
 export default connect(stpm, dtpm)(LessonTabs)

@@ -24,13 +24,15 @@ const store = createStore(reducer)
 
 const CourseEditor = ({ history }) => {
 
-    let { courseId, moduleId } = useParams();
+    let { layout } = useParams();
 
     return (<Provider store={store}>
         <div>
             <h1>
+                {/* <i onClick={() => history.goBack()} className="fas fa-times"></i> */}
+                <Link to={`/courses/${layout}`}><i className="fas fa-times"></i></Link>
                 !!Course Editor
-                <i onClick={() => history.goBack()} className="fas fa-times float-right"></i>
+
             </h1>
             <div className="row">
                 <div className="col-3">

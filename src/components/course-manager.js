@@ -1,21 +1,20 @@
-import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import CourseTopBar from './course-top-bar/course-top-bar'
-import CourseTable from './course-table/course-table'
-import CourseGrid from './course-grid/course-grid'
+import CourseTopBar from './course-top-bar/course-top-bar';
+import CourseTable from './course-table/course-table';
+import CourseGrid from './course-grid/course-grid';
+import CourseEditor from './course-editor/course-editor';
 
-import CourseEditor from './course-editor/course-editor'
-
-
-import courseService from '../services/course-service'
+import courseService from '../services/course-service';
 
 /* A class for the CourseManager component of this assignment */
 export default class CourseManager extends React.Component {
 
     /* initialize blank state before make an API call to get data */
     state = {
-        courses: []
+        courses: [],
     }
 
     /* fetch courses after component mounts */
@@ -56,18 +55,21 @@ export default class CourseManager extends React.Component {
 
     /* the render function to create the */
     render() {
+        let layout = this.props.match.params.layout;
+        let test = "test"
         return (
             <div className="container-fluid">
                 {/* <h1>Course Manager!</h1> */}
                 {/* <CourseTopBar createCourse={this.createCourse} /> */}
-                <Route path="/courses/table">
+                {/* <h1>Test: {test}</h1> */}
+                <Route path="/courses/table" exact={true}>
                     <CourseTopBar createCourse={this.createCourse} />
                     <CourseTable
                         courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
                         updateCourse={this.updateCourse} />
                 </Route>
-                <Route path="/courses/grid">
+                <Route path="/courses/grid" exact={true}>
                     <CourseTopBar createCourse={this.createCourse} />
                     <CourseGrid
                         courses={this.state.courses}
@@ -76,10 +78,10 @@ export default class CourseManager extends React.Component {
                 </Route>
 
                 <Route path={[
-                    "/courses/edit/:courseId",
-                    "/courses/edit/:courseId/modules/:moduleId",
-                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId",
-                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
+                    `/courses/:layout/edit/:courseId`,
+                    "/courses/:layout/edit/:courseId/modules/:moduleId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
                     exact={true}
                     render={(props) => <CourseEditor{...props} />}>
                 </Route>

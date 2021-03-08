@@ -11,9 +11,9 @@ export default () =>
             <Link to="/courses/grid" className="list-group-item">
                 Course Manager (Grid Form)
             </Link>
-            <Link to="/courses/edit" className="list-group-item">
+            {/* <Link to="/courses/edit" className="list-group-item">
                 Course Editor
-            </Link>
+            </Link> */}
 
         </div>
 

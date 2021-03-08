@@ -38,7 +38,7 @@ const topicReducer = (state = initialState, action) => {
         })
       }
 
-    case "DELETE_LESSON":
+    case "DELETE_TOPIC":
       const newStateDeleted = {
         topics: state.topics.filter(topic => {
           if (topic._id !== action.topicToDelete._id) {
@@ -49,6 +49,12 @@ const topicReducer = (state = initialState, action) => {
         })
       }
       return newStateDeleted;
+
+    case "CLEAN_TOPICS":
+      return {
+        ...state,
+        topics: [],
+      }
 
     default:
       return state;

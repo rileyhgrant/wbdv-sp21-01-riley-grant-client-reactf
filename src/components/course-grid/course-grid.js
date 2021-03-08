@@ -23,7 +23,7 @@ const CourseGrid = ({ courses, updateCourse, deleteCourse }) =>
                     <td className="">
                         <i className="m-1 fas fa-folder"></i>
                         <i className="m-1 fas fa-sort-alpha-up-alt"></i>
-                        <Link to="/manager/table"><i className="m-1 fas fa-list"></i></Link>
+                        <Link to="/courses/table"><i className="m-1 fas fa-list"></i></Link>
                     </td>
                 </tr>
             </tbody>

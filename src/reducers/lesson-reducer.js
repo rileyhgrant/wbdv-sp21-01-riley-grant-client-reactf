@@ -50,6 +50,7 @@ const lessonReducer = (state = initialState, action) => {
       }
       return newStateDeleted;
 
+
     default:
       return state;
 

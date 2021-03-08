@@ -30,7 +30,7 @@ export default class CourseTable extends React.Component {
                             <td className="">
                                 <i className="m-1 fas fa-folder"></i>
                                 <i className="m-1 fas fa-sort-alpha-up-alt"></i>
-                                <Link to="/manager/grid"><i className="m-1 fas fa-th"></i></Link>
+                                <Link to="/courses/grid"><i className="m-1 fas fa-th"></i></Link>
                             </td>
                         </tr>
                         {this.props.courses.map(course =>

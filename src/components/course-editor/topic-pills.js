@@ -12,16 +12,19 @@ const TopicPills = (
     createTopic,
     updateTopic,
     deleteTopic,
+    cleanTopics,
   }) => {
 
-  const { courseId, moduleId, lessonId, topicId } = useParams();
+  const { layout, courseId, moduleId, lessonId, topicId } = useParams();
 
   useEffect(() => {
     console.log("Load topics for lesson: " + lessonId);
     if (moduleId !== "undefined" && typeof moduleId !== "undefined" && lessonId !== "undefined" && typeof lessonId !== "undefined") {
       findTopicsForLesson(lessonId);
+    } else {
+      cleanTopics();
     }
-  }, [lessonId]);
+  }, [lessonId, moduleId]);
 
   return (
     <div>
@@ -31,7 +34,7 @@ const TopicPills = (
           topics.map(topic =>
             <li className={`nav-item ${topic._id === topicId ? 'nav-link active' : ''}`}>
               <EditableItem
-                to={`/courses/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
+                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                 item={topic}
                 updateItem={updateTopic}
                 deleteItem={deleteTopic}
@@ -80,9 +83,15 @@ const dtpm = (dispatch) => ({
   deleteTopic: (topicToDelete) => {
     topicService.deleteTopic(topicToDelete._id)
       .then(status => dispatch({
-        type: "UPDATE_TOPIC",
+        type: "DELETE_TOPIC",
         topicToDelete: topicToDelete,
       }))
+  },
+
+  cleanTopics: () => {
+    dispatch({
+      type: "CLEAN_TOPICS",
+    })
   },
 })
 

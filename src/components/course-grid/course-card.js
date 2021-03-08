@@ -55,7 +55,7 @@ const CourseCard = ({ course, updateCourse, deleteCourse }) => {
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 
                 <div>
-                    <Link class="btn btn-primary" to={`/courses/edit/${course._id}`}>{course.title}</Link>
+                    <Link class="btn btn-primary" to={`/courses/grid/edit/${course._id}`}>{course.title}</Link>
                     {!editing && <i onClick={ () => cardFunctions.editCourse()   } className="fas fa-edit float-right m-1"></i>}
                     {editing  && <i onClick={ () => cardFunctions.deleteCourse() } className="fas fa-trash float-right m-1"></i>}
                     {editing  && <i onClick={ () => cardFunctions.updateCourse() } className="fas fa-check float-right m-1" ></i>}

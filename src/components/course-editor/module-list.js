@@ -15,7 +15,7 @@ const ModuleList = (
     deleteModule,
   }) => {
 
-  const { courseId } = useParams();
+  const { courseId, moduleId } = useParams();
 
   useEffect(() => {
     findModulesForCourse(courseId);
@@ -61,29 +61,29 @@ const dtpm = (dispatch) => ({
   },
 
   createModule: (courseId) => {
-    moduleService.createModule( courseId, {title: "New Module"})
-    .then(theActualModule => dispatch({
-      type: "CREATE_MODULE",
-      module: theActualModule,
-    }))
+    moduleService.createModule(courseId, { title: "New Module" })
+      .then(theActualModule => dispatch({
+        type: "CREATE_MODULE",
+        module: theActualModule,
+      }))
   },
 
-  updateModule: (updatedModule) => 
+  updateModule: (updatedModule) =>
     moduleService.updateModule(updatedModule._id, updatedModule)
-    .then( status => dispatch({
-      type: "UPDATE_MODULE",
-      updatedModule: updatedModule,
-    })),
+      .then(status => dispatch({
+        type: "UPDATE_MODULE",
+        updatedModule: updatedModule,
+      })),
 
-  
-  deleteModule: (moduleToDelete) => 
-    moduleService.deleteModule( moduleToDelete._id )
-    .then( status => dispatch({
-      type: "DELETE_MODULE",
-      moduleToDelete: moduleToDelete,
-    })),
 
-  
+  deleteModule: (moduleToDelete) =>
+    moduleService.deleteModule(moduleToDelete._id)
+      .then(status => dispatch({
+        type: "DELETE_MODULE",
+        moduleToDelete: moduleToDelete,
+      })),
+
+
 })
 
 export default connect(stpm, dtpm)(ModuleList)

@@ -78,9 +78,8 @@ export default class CourseManager extends React.Component {
                 <Route path={[
                     "/courses/edit/:courseId",
                     "/courses/edit/:courseId/modules/:moduleId",
-                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId",
-                    // TODO: maybe not needed, remove possibly?
-                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId/topic/:topicId",]}
+                    "/courses/edit/:courseId/modules/:moduleId/lessons/:lessonId"]}
+                    exact={true}
                     render={(props) => <CourseEditor{...props} />}>
                 </Route>
 

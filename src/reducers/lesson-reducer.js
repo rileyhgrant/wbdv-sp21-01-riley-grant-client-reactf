@@ -9,9 +9,9 @@ const initialState = {
 const lessonReducer = (state = initialState, action) => {
   switch( action.type ) {
 
-    case "FIND_LESSON_FOR_MODULE":
+    case "FIND_LESSONS_FOR_MODULE":
       return {
-        lesson: action.lessons,
+        lessons: action.lessons,
       }
 
     case "FIND_LESSON":
@@ -19,6 +19,7 @@ const lessonReducer = (state = initialState, action) => {
 
     case "CREATE_LESSON":
       const newStateCreated = {
+        ...state,
         lessons: [
           ...state.lessons,
           action.lesson,

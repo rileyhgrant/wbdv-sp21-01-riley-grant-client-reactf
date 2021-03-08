@@ -18,8 +18,11 @@ const LessonTabs = (
   const { courseId, moduleId } = useParams();
 
   useEffect(() => {
-    findLessonsForModule(moduleId);
-  })
+    console.log( "Load lessons for module: " + moduleId);
+    if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
+      findLessonsForModule(moduleId);
+    }
+  }, [moduleId]);
 
   return (
     <div>
@@ -52,11 +55,11 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
 
-  findLessonsForModule: (lessonId) => {
-    lessonService.findLessonsForModule(lessonId)
-    .then(theTopics => dispatch({
-      type: "FIND_TOPICS_FOR_LESSON",
-      topics: theTopics,
+  findLessonsForModule: (moduleId) => {
+    lessonService.findLessonsForModule(moduleId)
+    .then(theLessons => dispatch({
+      type: "FIND_LESSONS_FOR_MODULE",
+      lessons: theLessons,
     }))
   },
 

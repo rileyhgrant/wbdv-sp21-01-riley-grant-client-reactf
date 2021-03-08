@@ -3,9 +3,9 @@ const MODULES_URL = 'https://wbdv-generic-server.herokuapp.com/api/001661897/mod
 
 const findModulesForCourse = (courseId) =>
   fetch(`${COURSES_URL}/${courseId}/modules`)
-    .then(response => response.json())
+    .then(response => response.json());
 
-const createModuleForCourse = (courseId, module) =>
+const createModule = (courseId, module) =>
   fetch(`${COURSES_URL}/${courseId}/modules`, {
     method: "POST",
     body: JSON.stringify(module),
@@ -13,30 +13,37 @@ const createModuleForCourse = (courseId, module) =>
       'content-type': 'application/json',
     },
   })
-    .then(response => response.json())
+    .then(response => response.json());
+
+
+const findModule = (moduleId) => {
+  fetch(`${MODULES_URL}/${moduleId}`)
+    .then(response => response.json());
+}
 
 const updateModule = (moduleId, module) =>
   fetch(`${MODULES_URL}/${moduleId}`, {
     method: "PUT",
     body: JSON.stringify(module),
     headers: {
-      'content-type': 'application/json'
+      'content-type': 'application/json',
     }
   })
-    .then(response => response.json())
+    .then(response => response.json());
 
 const deleteModule = (moduleId) =>
   fetch(`${MODULES_URL}/${moduleId}`, {
-    method: "DELETE"
+    method: "DELETE",
   })
-    .then(response => response.json())
+    .then(response => response.json());
 
 
 const moduleAPI = {
   findModulesForCourse,
-  createModuleForCourse,
+  findModule,
+  createModule,
   deleteModule,
   updateModule,
 }
-/* export the default object that includes all of the functions*/
+/* export the default object as an api that includes all of the functions*/
 export default moduleAPI;

@@ -9,18 +9,16 @@ import EditableItem from '../editable-item'
 const ModuleList = (
   {
     modules = [],
+    findModulesForCourse,
     createModule,
     updateModule,
     deleteModule,
-    findModulesForCourse,
   }) => {
 
   const { courseId } = useParams();
-  const lessonIdDummy = "lessonId";
-  const topicIdDummy = "topicId";
 
   useEffect(() => {
-    findModulesForCourse(courseId)
+    findModulesForCourse(courseId);
   }, []);
 
   return (
@@ -52,18 +50,29 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
+
+  findModulesForCourse: (courseId) => {
+    // alert(courseId);
+    moduleService.findModulesForCourse(courseId)
+      .then(theModules => dispatch({
+        type: "FIND_MODULES_FOR_COURSE",
+        modules: theModules,
+      }))
+  },
+
   createModule: (courseId) => {
-    moduleService.createModuleForCourse( courseId, {title: "New Module"})
+    moduleService.createModule( courseId, {title: "New Module"})
     .then(theActualModule => dispatch({
       type: "CREATE_MODULE",
       module: theActualModule,
     }))
   },
+
   updateModule: (updatedModule) => 
     moduleService.updateModule(updatedModule._id, updatedModule)
     .then( status => dispatch({
       type: "UPDATE_MODULE",
-      updatedModule
+      updatedModule: updatedModule,
     })),
 
   
@@ -74,14 +83,7 @@ const dtpm = (dispatch) => ({
       moduleToDelete: moduleToDelete,
     })),
 
-  findModulesForCourse: (courseId) => {
-    // alert(courseId);
-    moduleService.findModulesForCourse(courseId)
-      .then(theModules => dispatch({
-        type: "FIND_MODULES_FOR_COURSE",
-        modules: theModules,
-      }))
-  }
+  
 })
 
 export default connect(stpm, dtpm)(ModuleList)

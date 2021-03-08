@@ -15,31 +15,18 @@ const moduleReducer = (state = initialState, action) => {
         modules: action.modules,
       }
 
+    case "FIND_MODULE":
+      break;
+
     case "CREATE_MODULE":
-      const newStateCreate = {
+      const newStateCreated = {
         // ...state,
         modules: [
           ...state.modules,
-          action.module
+          action.module,
         ]
       }
-      return newStateCreate;
-
-    case "DELETE_MODULE":
-      const newStateDelete = {
-        modules: state.modules.filter( module => {
-          if (module._id !== action.moduleToDelete._id) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-      }
-      return newStateDelete;
-
-
-    case "FIND_MODULE":
-      break;
+      return newStateCreated;
 
     case "UPDATE_MODULE":
       return {
@@ -52,6 +39,18 @@ const moduleReducer = (state = initialState, action) => {
           }
         })
       }
+
+    case "DELETE_MODULE":
+      const newStateDeleted = {
+        modules: state.modules.filter(module => {
+          if (module._id !== action.moduleToDelete._id) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      }
+      return newStateDeleted;
 
     default:
       return state;

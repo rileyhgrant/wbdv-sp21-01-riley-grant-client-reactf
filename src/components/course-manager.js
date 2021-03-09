@@ -21,6 +21,7 @@ export default class CourseManager extends React.Component {
     componentDidMount() {
         courseService.findAllCourses()
             .then(courses => this.setState({ courses }));
+            document.title = 'cs5610: A4';
     }
 
     /* A method that updates the state to update add given course */
@@ -55,30 +56,25 @@ export default class CourseManager extends React.Component {
 
     /* the render function to create the */
     render() {
-        let layout = this.props.match.params.layout;
-        let test = "test"
         return (
             <div className="container-fluid">
-                {/* <h1>Course Manager!</h1> */}
-                {/* <CourseTopBar createCourse={this.createCourse} /> */}
-                {/* <h1>Test: {test}</h1> */}
                 <Route path="/courses/table" exact={true}>
                     <CourseTopBar createCourse={this.createCourse} />
-                    <CourseTable
-                        courses={this.state.courses}
+                    <CourseTable courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
-                        updateCourse={this.updateCourse} />
+                        updateCourse={this.updateCourse}
+                    />
                 </Route>
                 <Route path="/courses/grid" exact={true}>
                     <CourseTopBar createCourse={this.createCourse} />
-                    <CourseGrid
-                        courses={this.state.courses}
+                    <CourseGrid courses={this.state.courses}
                         deleteCourse={this.deleteCourse}
-                        updateCourse={this.updateCourse} />
+                        updateCourse={this.updateCourse}
+                    />
                 </Route>
 
                 <Route path={[
-                    `/courses/:layout/edit/:courseId`,
+                    "/courses/:layout/edit/:courseId",
                     "/courses/:layout/edit/:courseId/modules/:moduleId",
                     "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
                     "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}

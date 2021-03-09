@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './editable-item.style.client.css'
 
 
 const EditableItem = (
@@ -37,51 +38,30 @@ const EditableItem = (
     deleteCourse: eiDeleteCourse,
   }
 
+  const actClass = active ? 'active eiActive' : 'text-primary';
 
   return (
     <>
       { !editing && <>
-        <Link 
-          // className={`nav-link ${active ? 'active' : ''}`} 
+        <Link
+          className={`d-inline nav-link ${actClass}`}
           to={to}>
-          {item.title} {JSON.stringify(active)}
+          {item.title} {/* {JSON.stringify(active)} */}
         </Link>
-        <i onClick={() => itemFunctions.editCourse()} className="m-1 fas fa-edit" ></i>
+        <i onClick={() => itemFunctions.editCourse()}
+          className={`m-1 float-right fas fa-edit ${actClass}`}></i>
       </>}
       { editing && <>
         <input
           onChange={(e) => setItemCache({ ...itemCache, title: e.target.value })}
           value={itemCache.title} />
-        <i onClick={() => itemFunctions.updateCourse()} className="m-1 fas fa-check"></i>
-        <i onClick={() => itemFunctions.deleteCourse()} className="m-1 fas fa-trash"></i>
+        <i onClick={() => itemFunctions.updateCourse()}
+          className={`m-1 float-right fas fa-check ${actClass}`}></i>
+        <i onClick={() => itemFunctions.deleteCourse()}
+          className={`m-1 float-right fas fa-trash ${actClass}`}></i>
       </>}
     </>
   )
 }
 
 export default EditableItem
-
-
-// { !editing && <>
-    //   <Link to={to}>{item.title}</Link>
-    //   <i className="fas fa-edit" onClick={() => {
-    //     //setItemCache(item)
-    //     setEditing(true);
-    //     setItemCache(item);
-    //   }}></i>
-    // </>}
-    // { editing && <>
-    //   <input
-    //     onChange={(e) => setItemCache({ ...itemCache, title: e.target.value })}
-    //     value={itemCache.title}
-    //   />
-    //   <i className="fas fa-check" onClick={() => {
-    //     setEditing(false)
-    //     updateItem(itemCache)
-    //   }}></i>
-    //   <i className="fas fa-times" onClick={() => {
-    //     // setItemCache("")
-    //     setEditing(false);
-    //     deleteItem(item);
-    //   }}></i>
-    // </>}

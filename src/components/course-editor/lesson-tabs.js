@@ -25,12 +25,12 @@ const LessonTabs = (
   }, [moduleId]);
 
   return (
-    <div>
-      <h2>!!LessonTabs</h2>
+    <div className="mt-2">
+      {/* <h2>!!LessonTabs</h2> */}
       <ul className="nav nav-tabs">
         {
           lessons.map(lesson =>
-            <li className={`nav-item ${lesson._id === lessonId ? 'nav-link active' : ''}`}>
+            <li className={`mx-2 nav-item ${lesson._id === lessonId ? 'nav-link active' : ''}`}>
               <EditableItem
                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                 item={lesson}
@@ -41,7 +41,7 @@ const LessonTabs = (
           )
         }
         <li className="nav-item">
-          <i className="fas fa-plus fa-2x" onClick={() => createLesson(moduleId)}></i>
+          <i className="ml-4 fas fa-plus fa-2x text-primary" onClick={() => createLesson(moduleId)}></i>
         </li>
       </ul>
     </div>

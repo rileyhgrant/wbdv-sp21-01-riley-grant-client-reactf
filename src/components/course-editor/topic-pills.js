@@ -27,23 +27,24 @@ const TopicPills = (
   }, [lessonId, moduleId]);
 
   return (
-    <div>
-      <h2>!!TopicPills</h2>
+    <div className="mt-3">
+      {/* <h2>!!TopicPills</h2> */}
       <ul className="nav nav-pills">
         {
           topics.map(topic =>
-            <li className={`nav-item ${topic._id === topicId ? 'nav-link active' : ''}`}>
+            <li className={`mx-2 nav-item ${topic._id === topicId ? 'nav-link active' : ''}`}>
               <EditableItem
                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                 item={topic}
                 updateItem={updateTopic}
                 deleteItem={deleteTopic}
+                active={topic._id === topicId ? true : false }
               />
             </li>
           )
         }
         <li className="nav-item">
-          <i className="fas fa-plus fa-2x" onClick={() => createTopic(lessonId)}></i>
+          <i className="ml-4 fas fa-plus fa-2x text-primary" onClick={() => createTopic(lessonId)}></i>
         </li>
       </ul>
     </div>

@@ -16,6 +16,9 @@ const moduleReducer = (state = initialState, action) => {
       }
 
     case "FIND_MODULE":
+      // I don't see how this can be implemented, the reducer expects a state back from
+      //   every case. I have a find function in the service, but here I don't understand
+      //   how to return a single module and not break everything.
       break;
 
     case "CREATE_MODULE":

@@ -32,15 +32,12 @@ const CourseEditor = ({ history }) => {
         .then(actualCourse => setPageTitle(actualCourse.title))
     }, [])
 
-    // let theCourse = courseService.findCourseById( courseId ).then();
-
     return (<Provider store={store}>
         <div>
             <h1>
-                {/* console.log({ theCourse }); */}
-                {/* <i onClick={() => history.goBack()} className="fas fa-times"></i> */}
-                <Link to={`/courses/${layout}`}><i className="fas fa-times"></i></Link>
-                !!Course Editor, {pageTitle}
+                
+                <Link to={`/courses/${layout}`}><i className="mr-3 fas fa-times"></i></Link>
+                Course Editor: {pageTitle}
 
             </h1>
             <div className="row">

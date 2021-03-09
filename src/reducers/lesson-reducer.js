@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const lessonReducer = (state = initialState, action) => {
-  switch( action.type ) {
+  switch (action.type) {
 
     case "FIND_LESSONS_FOR_MODULE":
       return {
@@ -15,7 +15,10 @@ const lessonReducer = (state = initialState, action) => {
       }
 
     case "FIND_LESSON":
-        return state;
+      // I don't see how this can be implemented, the reducer expects a state back from
+      //   every case. I have a find function in the service, but here I don't understand
+      //   how to return a single module and not break everything.
+      return state;
 
     case "CREATE_LESSON":
       const newStateCreated = {
@@ -29,7 +32,7 @@ const lessonReducer = (state = initialState, action) => {
 
     case "UPDATE_LESSON":
       return {
-        lessons: state.lessons.map( lesson => {
+        lessons: state.lessons.map(lesson => {
           if (lesson._id === action.updatedLesson._id) {
             return action.updatedLesson;
           } else {
@@ -40,8 +43,8 @@ const lessonReducer = (state = initialState, action) => {
 
     case "DELETE_LESSON":
       const newStateDeleted = {
-        lessons: state.lessons.filter( lesson => {
-          if ( lesson._id !== action.lessonToDelete._id ) {
+        lessons: state.lessons.filter(lesson => {
+          if (lesson._id !== action.lessonToDelete._id) {
             return true;
           } else {
             return false;

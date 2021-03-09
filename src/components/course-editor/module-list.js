@@ -22,8 +22,8 @@ const ModuleList = (
   }, []);
 
   return (
-    <div>
-      <h2>!!ModuleList</h2>
+    <div className="mt-2">
+      {/* <h2>!!ModuleList</h2> */}
       <ul className="list-group">
         {
           modules.map(module =>
@@ -33,12 +33,12 @@ const ModuleList = (
                 item={module}
                 updateItem={updateModule}
                 deleteItem={deleteModule} 
-                />
+                active={module._id === moduleId ? true : false}/>
             </li>
           )
         }
         <li className="list-group-item">
-          <i className="fas fa-plus fa-2x" onClick={() => createModule(courseId)}></i>
+          <i className="fas fa-plus fa-2x text-primary" onClick={() => createModule(courseId)}></i>
         </li>
       </ul>
     </div>

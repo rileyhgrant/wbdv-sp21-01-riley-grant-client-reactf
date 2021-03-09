@@ -53,6 +53,12 @@ const lessonReducer = (state = initialState, action) => {
       }
       return newStateDeleted;
 
+    case "CLEAN_LESSONS":
+      return {
+        ...state,
+        lessons: [],
+      }
+
 
     default:
       return state;

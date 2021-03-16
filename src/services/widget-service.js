@@ -1,8 +1,9 @@
 // // const LESSONS_URL = 'https://wbdv-generic-server.herokuapp.com/api/001661897/lessons';
 // const TOPICS_URL = 'https://wbdv-generic-server.herokuapp.com/api/001661897/topics';
 // const WIDGETS_URL = 'https://localhost:8080/topics'
-const LOCAL_URL = 'http://localhost:8080/api';
-const LOCAL_URL_WITH_TOPIC = 'http://localhost:8080/api/topics';
+// const LOCAL_URL = 'http://localhost:8080/api';
+const LOCAL_URL = 'https://wbdv-sp21-01-java-rgrant.herokuapp.com/api'
+// const LOCAL_URL_WITH_TOPIC = 'http://localhost:8080/api/topics';
 
 
 const findWidgetsForTopic = (topicId) =>

@@ -38,7 +38,7 @@ const CourseEditor = ({ history }) => {
 
     return (<Provider store={store}>
         <div>
-            <h1>
+            <h1 className="mt-2">
                 
                 <Link to={`/courses/${layout}`}><i className="mr-3 fas fa-times"></i></Link>
                 Course Editor: {pageTitle}

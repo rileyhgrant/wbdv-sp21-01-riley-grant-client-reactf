@@ -21,7 +21,7 @@ export default class CourseManager extends React.Component {
     componentDidMount() {
         courseService.findAllCourses()
             .then(courses => this.setState({ courses }));
-            document.title = 'cs5610: A4';
+            document.title = 'cs5610: A5; RGrant';
     }
 
     /* A method that updates the state to update add given course */

@@ -6,10 +6,61 @@ const LOCAL_URL_WITH_TOPIC = 'http://localhost:8080/api/topics';
 
 
 const findWidgetsForTopic = (topicId) =>
-  // fetch(`http://localhost:8080/api/widgets`)
-  //   .then( response => response.json() );
-  fetch(`${LOCAL_URL_WITH_TOPIC}/${topicId}/widgets`)
-    .then( response => response.json() );
+  fetch(`${LOCAL_URL}/topics/${topicId}/widgets`)
+    .then(response => response.json());
+
+// const findWidget = (widgetId)
+
+const createWidget = ( topicId, widget ) =>
+  fetch(`${LOCAL_URL}/topics/${topicId}/widgets`, {
+    method: "POST",
+    body: JSON.stringify( widget ),
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+    .then(response => response.json());
+
+
+const updateWidget = (widget) => 
+  fetch(`${LOCAL_URL}/widgets/${widget.id}`, {
+    method: "PUT",
+    body: JSON.stringify(widget),
+    headers: {
+      'content-type': 'application/json',
+    }
+  })
+    .then(response => response.json());
+
+
+const deleteWidget = (widgetId) =>
+  fetch(`${LOCAL_URL}/widgets/${widgetId}`, {
+    method: "DELETE",
+  })
+    .then( response => response.json());
+
+const widgetAPI = {
+  findWidgetsForTopic,
+  // findTopic,
+  createWidget,
+  deleteWidget,
+  updateWidget,
+}
+
+/* export the default object as an api that includes all of the functions */
+export default widgetAPI
+
+
+
+
+
+
+// fetch(`http://localhost:8080/api/widgets`)
+//   .then( response => response.json() );
+// fetch(`${LOCAL_URL_WITH_TOPIC}/${topicId}/widgets`)
+//   .then( response => response.json() );
+
+
 
 //   // fetch(`${LESSONS_URL}/${lessonId}/topics`)
 //   //   .then(response => response.json());
@@ -45,13 +96,4 @@ const findWidgetsForTopic = (topicId) =>
 // //     .then(response => response.json());
 
 
-const widgetAPI = {
-  findWidgetsForTopic,
-  // findTopic,
-  // createTopic,
-  // deleteTopic,
-  // updateTopic,
-}
 
-/* export the default object as an api that includes all of the functions */
-export default widgetAPI

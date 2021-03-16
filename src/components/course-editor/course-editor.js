@@ -29,6 +29,7 @@ const store = createStore(reducer)
 const CourseEditor = ({ history }) => {
 
     let { layout, courseId } = useParams();
+
     const [pageTitle, setPageTitle] = useState('test');
     useEffect( () => {
         courseService.findCourseById(courseId)

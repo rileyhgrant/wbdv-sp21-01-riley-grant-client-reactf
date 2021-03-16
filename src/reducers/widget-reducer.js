@@ -14,6 +14,40 @@ const widgetReducer = (state = initialState, action) => {
         widgets: action.widgets,
       }
 
+    case "CREATE_WIDGET":
+      const newStateCreated = {
+        ...state,
+        widgets: [
+          ...state.widgets,
+          action.widget,
+        ]
+      }
+      return newStateCreated;
+
+    case "UPDATE_WIDGET":
+      return {
+        widgets: state.widgets.map( w => {
+          if (w.id === action.widgetToUpdate.id) {
+            return action.widgetToUpdate;
+          } else {
+            return w;
+          }
+        })
+      }
+
+    case "DELETE_WIDGET":
+      const newStateDeleted = {
+        widgets: state.widgets.filter(w => {
+          if (w.id !== action.widgetToDelete.id) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      }
+      return newStateDeleted;
+
+
     default:
       return state;
     }

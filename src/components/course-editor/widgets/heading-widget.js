@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+// import WidgetDropdown from './widget-dropdown'
 
 const HeadingWidget = ({
   widget,
@@ -18,21 +19,26 @@ const HeadingWidget = ({
       {/* TEXT: {editingWidget.text} */}
       {
         editing &&
-        <div style={{"width":"90%"}}>
-          <select 
-          className="m-2 form-control"
-          onChange={(e) => setEditingWidget({...editingWidget, type: e.target.value })}
-          value={editingWidget.type}>
+        <div style={{ "width": "90%" }}>
+          {/* <select
+            className="m-2 form-control"
+            onChange={(e) => setEditingWidget({ ...editingWidget, type: e.target.value })}
+            value={editingWidget.type}>
             <option value={"HEADING"}>Heading</option>
             <option value={"PARAGRAPH"}>Paragraph</option>
-          </select>
+            <option value={"LIST"}>List</option>
+            <option value={"IMAGE"}>Image</option>
+          </select> */}
+          <h6 className="m-2">Header Text:</h6>
           <input
             className="m-2 form-control"
             // onChange={(e) => setItemCache({ ...itemCache, text: e.target.value })}
             onChange={(e) => setEditingWidget({ ...editingWidget, text: e.target.value })}
             value={editingWidget.text}>
           </input>
-          <select 
+
+          <h6 className="m-2">Header Size:</h6>
+          <select
             className="m-2 form-control"
             onChange={(e) => setEditingWidget({ ...editingWidget, size: parseInt(e.target.value) })}
             value={editingWidget.size}>

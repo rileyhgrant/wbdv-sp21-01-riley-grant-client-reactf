@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import widgetService from '../../../services/widget-service';
+import GenericWidget from './generic-widget';
 import HeadingWidget from './heading-widget';
+import ImageWidget from './image-widget';
+import ListWidget from './list-widget';
 import ParagraphWidget from './paragraph-widget';
 
 
@@ -83,6 +86,14 @@ const WidgetList = (
 
             {/* LOGIC TO DISPLAY WIDGET */}
             <div>
+
+            <GenericWidget 
+                widget={w}
+                editing={editingWidget.id === w.id}
+                editingWidget={editingWidget}
+                setEditingWidget={setEditingWidget}/>
+
+{/* 
             { w.type === "HEADING" &&
               <HeadingWidget 
                 widget={w}
@@ -95,6 +106,19 @@ const WidgetList = (
                 editing={editingWidget.id === w.id}
                 editingWidget={editingWidget}
                 setEditingWidget={setEditingWidget}/> }
+            { w.type === "LIST" &&
+              <ListWidget 
+                widget={w}
+                editing={editingWidget.id === w.id}
+                editingWidget={editingWidget}
+                setEditingWidget={setEditingWidget}/> }
+            { w.type === "IMAGE" &&
+              <ImageWidget 
+                widget={w}
+                editing={editingWidget.id === w.id}
+                editingWidget={editingWidget}
+                setEditingWidget={setEditingWidget}/> }
+                 */}
             </div>
           </li>  
         )
@@ -131,6 +155,7 @@ const dtpm = (dispatch) => ({
         text: "New Widget",
         type: "HEADING",
         size: 1,
+        ordered: false,
       })
       .then(theActualWidget => dispatch({
         type: "CREATE_WIDGET",

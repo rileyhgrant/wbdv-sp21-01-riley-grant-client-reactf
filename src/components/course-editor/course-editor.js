@@ -1,64 +1,64 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import './course-editor.style.client.css'
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import "./course-editor.style.client.css";
 
-import courseService from '../../services/course-service';
+import courseService from "../../services/course-service";
 
-import moduleReducer from '../../reducers/module-reducer';
-import lessonReducer from '../../reducers/lesson-reducer';
-import topicReducer from '../../reducers/topic-reducer';
-import widgetReducer from '../../reducers/widget-reducer';
+import moduleReducer from "../../reducers/module-reducer";
+import lessonReducer from "../../reducers/lesson-reducer";
+import topicReducer from "../../reducers/topic-reducer";
+import widgetReducer from "../../reducers/widget-reducer";
 
-import ModuleList from './module-list'
-import LessonTabs from './lesson-tabs'
-import TopicPills from './topic-pills'
-import WidgetList from './widgets/widget-list';
-
+import ModuleList from "./module-list";
+import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
+import WidgetList from "./widgets/widget-list";
 
 /* create the reducer store */
 const reducer = combineReducers({
-    moduleReducer: moduleReducer,
-    lessonReducer: lessonReducer,
-    topicReducer: topicReducer,
-    widgetReducer: widgetReducer,
-})
-const store = createStore(reducer)
+  moduleReducer: moduleReducer,
+  lessonReducer: lessonReducer,
+  topicReducer: topicReducer,
+  widgetReducer: widgetReducer,
+});
+const store = createStore(reducer);
 
 const CourseEditor = ({ history }) => {
+  let { layout, courseId } = useParams();
 
-    let { layout, courseId } = useParams();
+  const [pageTitle, setPageTitle] = useState("test");
+  useEffect(() => {
+    courseService
+      .findCourseById(courseId)
+      .then((actualCourse) => setPageTitle(actualCourse.title));
+  }, []);
 
-    const [pageTitle, setPageTitle] = useState('test');
-    useEffect( () => {
-        courseService.findCourseById(courseId)
-        .then(actualCourse => setPageTitle(actualCourse.title))
-    }, [])
-
-    return (<Provider store={store}>
-        <div>
-            <h1 className="mt-2">
-                
-                <Link to={`/courses/${layout}`}><i className="mr-3 fas fa-times"></i></Link>
-                Course Editor: {pageTitle}
-
-            </h1>
-            <div className="row">
-                <div className="col-3">
-                    <ModuleList />
-                </div>
-                <div className="col-9">
-                    <LessonTabs />
-                    <TopicPills />
-                    <br/>
-                    <WidgetList />
-                </div>
-            </div>
+  return (
+    <Provider store={store}>
+      <div>
+        <h1 className="mt-2">
+          <Link to={`/courses/${layout}`}>
+            <i className="mr-3 fas fa-times"></i>
+          </Link>
+          Course Editor: {pageTitle}
+        </h1>
+        <div className="row">
+          <div className="col-3">
+            <ModuleList />
+          </div>
+          <div className="col-9">
+            <LessonTabs />
+            <TopicPills />
+            <br />
+            <WidgetList />
+          </div>
         </div>
+      </div>
     </Provider>
-    )
-}
+  );
+};
 
 // <div className="container" style={{ "margin-top": "20px" }}>
 //     <div className="row header-text ce-header" style={{ "padding-top": "20px" }}>
@@ -152,6 +152,5 @@ const CourseEditor = ({ history }) => {
 //         <br />
 //     </div>
 // </div>
-
 
 export default CourseEditor;

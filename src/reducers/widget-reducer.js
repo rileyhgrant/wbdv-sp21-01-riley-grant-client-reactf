@@ -46,9 +46,16 @@ const widgetReducer = (state = initialState, action) => {
 
 
     case "FIND_WIDGETS_FOR_TOPIC":
-      return {
-        widgets: action.widgets,
+      if ( action.widgets === undefined ) {
+        return [];
+      } else {
+        return {
+          widgets: action.widgets,
+        }
       }
+      // return {
+      //   widgets: action.widgets,
+      // }
 
 
     // Both of these cases were optional according to the

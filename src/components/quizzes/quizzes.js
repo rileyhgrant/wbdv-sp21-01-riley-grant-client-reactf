@@ -17,11 +17,12 @@ const Quizzes = () => {
         Quizzes
       </h1>
       <div className="list-group">
-        {quizzes.map((quiz) => (
+        {quizzes.map((quiz) => {
+          return  (
           <Link className={"list-group-item"} to={`quizzes/${quiz._id}`}>
             {quiz.title}
           </Link>
-        ))}
+        )})}
       </div>
     </>
   );

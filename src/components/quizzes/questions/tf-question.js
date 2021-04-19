@@ -28,7 +28,10 @@ const TrueFalseQuestion = ({ q, setGuess, submittedGuess }) => {
           <input
             type="radio"
             name={q._id}
-            onClick={() => setGuess("true")}
+            onClick={() => {
+              q.answer = "true";
+              setGuess("true");
+            }}
             // {submittedGuess === true && style={{ color: "red" }}
           />
           &nbsp; True
@@ -61,7 +64,14 @@ const TrueFalseQuestion = ({ q, setGuess, submittedGuess }) => {
               : ""
           }`}
         >
-          <input type="radio" name={q._id} onClick={() => setGuess("false")} />
+          <input
+            type="radio"
+            name={q._id}
+            onClick={() => {
+              q.answer = "false";
+              setGuess("false");
+            }}
+          />
           &nbsp; False
           {q.correct === "false" && submittedGuess === "false" && (
             <i style={{ color: "green" }} className="ml-2 fas fa-check"></i>

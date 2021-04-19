@@ -27,15 +27,20 @@ const Question = ({ q }) => {
           <i style={{ color: "red" }} className="ml-2 fas fa-times"></i>
         )}
       </h4>
-      {/* <h3>Guess: {String(guess)}</h3> */}
-      {/* <h3>Correct: {JSON.stringify(q.correct)}</h3> */}
-      {/* <h4>isCorrect: {String(isCorrect)}</h4> */}
 
       {q.type === "MULTIPLE_CHOICE" && (
-        <MultiChoiceQuestion q={q} setGuess={setGuess} submittedGuess={submittedGuess} />
+        <MultiChoiceQuestion
+          q={q}
+          setGuess={setGuess}
+          submittedGuess={submittedGuess}
+        />
       )}
       {q.type === "TRUE_FALSE" && (
-        <TrueFalseQuestion q={q} setGuess={setGuess} submittedGuess={submittedGuess}/>
+        <TrueFalseQuestion
+          q={q}
+          setGuess={setGuess}
+          submittedGuess={submittedGuess}
+        />
       )}
       <button className={`btn btn-success mt-2`} onClick={() => runGrade()}>
         Grade

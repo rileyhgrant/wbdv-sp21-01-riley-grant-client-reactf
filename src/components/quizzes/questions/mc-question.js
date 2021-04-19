@@ -29,7 +29,10 @@ const MultiChoiceQuestion = ({ q, setGuess, submittedGuess }) => {
               <input
                 type="radio"
                 name={q._id}
-                onClick={() => setGuess(option)}
+                onClick={() => {
+                  q.answer = option;
+                  setGuess(option)}
+                }
               />
               &nbsp; {option}
               {/* Handling of red X or green check */}
